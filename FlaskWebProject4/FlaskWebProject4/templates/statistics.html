@@ -1,0 +1,229 @@
+﻿<div style="padding-left:5px">
+    <div class="accordion" id="statistics2">
+        <!--accordion ITEM TWO-->
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <button class="btn btn-info" data-toggle="collapse" data-parent="#statistics2" href="#collapseTwo">
+                    DATA
+                </button>
+                <button class="btn btn-info" data-toggle="collapse">
+                    STATISTICS
+                </button>
+                <ul class="nav nav-pills mb-5">
+                    <li class="nav-item dropdown ml-auto">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Admin</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#" class="dropdown-item">Reports</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <!--accordion INSIDE accordion ITEM TWO-->
+                    <ul class="nav nav-tabs" id="collapseTwo" role="tablist">
+                        <li class="nav-item" style="background-color:white;color:cyan">
+                            <a class="nav-link active" id="hiring-tab" data-toggle="tab" href="#hiring" role="tab" aria-controls="hiring" aria-selected="false" onclick="getModule1(1)">Hiring</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="marketing-tab" data-toggle="tab" href="#marketing" role="tab" aria-controls="marketing" aria-selected="false" onclick="getModule2(2)">Marketing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="interview-tab" data-toggle="tab" href="#interview" role="tab" aria-controls="Interview" aria-selected="false" onclick="getModule3(3)">Interview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="onboarding-tab" data-toggle="tab" href="#onboarding" role="tab" aria-controls="onboarding" aria-selected="false" onclick="getModule4(4)">Onboarding</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="placed-tab" data-toggle="tab" href="#placed" role="tab" aria-controls="placed" aria-selected="false" onclick="getModule5(5)">Placed</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="statisticsTabContent">
+                        <div class="tab-pane fade show active" id="hiring" role="tabpanel" aria-labelledby="hiring-tab">
+                            <div id='1-loader' style='display: none;'>
+                                <img src='static/images/ajax-loader.gif'>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="marketing" role="tabpanel" aria-labelledby="marketing-tab">
+                            <div id='2-loader' style='display: none;'>
+                                <img src='static/images/ajax-loader.gif'>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="onboarding" role="tabpanel" aria-labelledby="onboarding-tab">
+                            <div id='3-loader' style='display: none;'>
+                                <img src='static/images/ajax-loader.gif'>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="interview" role="tabpanel" aria-labelledby="interview-tab">
+                            <div id='4-loader' style='display: none;'>
+                                <img src='static/images/ajax-loader.gif'>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="placed" role="tabpanel" aria-labelledby="placed-tab">
+                            <div id='5-loader' style='display: none;'>
+                                <img src='static/images/ajax-loader.gif'>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function wait(ms) {
+        var start = new Date().getTime();
+        var end = start;
+        while (end < start + ms) {
+            end = new Date().getTime();
+        }
+    }
+    function hiringDelete(cid) {
+        $.ajax({
+            type: 'GET',
+            url: "/hiringDelete?candidate_id=" + cid,
+            success: function (result) {
+                $("#" + cid + "-hiringRow").remove();
+            }
+        });
+    }
+    function hiringEdit(cid) {
+        var staticElements = document.getElementsByClassName("hiring-static-" + cid);
+        var editElements = document.getElementsByClassName("hiring-edit-" + cid);
+        for (var i = 0; i < staticElements.length; i++) {
+            staticElements[i].style.display = "none";
+            editElements[i].style.display = "block";
+        }
+        document.getElementById(cid + "-editHiring").style.display = "none";
+        document.getElementById(cid + "-saveHiring").style.display = "block";
+        document.getElementById(cid + "-cancelHiring").style.display = "block";
+        document.getElementById(cid + "-deleteHiring").style.display = "block";
+    }
+    function hiringSave(cid) {
+        var staticElements = document.getElementsByClassName("hiring-static-" + cid);
+        var editElements = document.getElementsByClassName("hiring-edit-" + cid);
+        $.ajax({
+            type: 'GET',
+            url: "/hiringSave?candidate_id=" + cid,
+            success: function (result) {
+                $("#"+cid+ "-hiring")
+            }
+        })
+        for (var i = 0; i < staticElements.length; i++) {
+            staticElements[i].style.display = "block";
+            editElements[i].style.display = "none";
+        }
+    }
+    function hiringCancel(cid) {
+        var staticElements = document.getElementsByClassName("hiring-static-" + cid);
+        var editElements = document.getElementsByClassName("hiring-edit-" + cid);
+        for (var i = 0; i < staticElements.length; i++) {
+            staticElements[i].style.display = "block";
+            editElements[i].style.display = "none";
+        }
+        document.getElementById(cid + "-editHiring").style.display = "block";
+        document.getElementById(cid + "-saveHiring").style.display = "none";
+        document.getElementById(cid + "-cancelHiring").style.display = "none";
+        document.getElementById(cid + "-deleteHiring").style.display = "none";
+    }
+    function getModule1(i) {
+        $.ajax({
+            type: 'GET',
+            url: "/hiring",
+            beforeSend: function () {
+                $("#" + i + "-loader").show();
+            },
+            success: function (result) {
+                document.getElementById("hiring").innerHTML = result;
+                eval(document.getElementById("submit_hiringForm").innerHTML);
+            },
+            complete: function () {
+                $("#" + i + "-loader").hide();
+            }
+        });
+    }
+    function getModule2(i) {
+        $.ajax({
+            type: 'GET',
+            url: "/marketing",
+            beforeSend: function () {
+                $("#" + i + "-loader").show();
+            },
+            success: function (result) {
+                document.getElementById("marketing").innerHTML = result;
+            },
+            complete: function () {
+                $("#" + i + "-loader").hide();
+            }
+        });
+    }
+    function getModule4(i) {
+        $.ajax({
+            type: 'GET',
+            url: "/onboarding1",
+            beforeSend: function () {
+                $("#" + i + "-loader").show();
+            },
+            success: function (result) {
+                document.getElementById("onboarding").innerHTML = result;
+            },
+            complete: function () {
+                $("#" + i + "-loader").hide();
+            }
+        });
+    }
+    function getModule3(i) {
+        document.getElementById("interview").innerHTML = "";
+        $.ajax({
+            type: 'GET',
+            url: "/interview",
+            success: function (result) {
+                document.getElementById("interview").innerHTML = result;
+                eval(document.getElementById("submit_interviewForm").innerHTML);
+            }
+        });
+    }
+    function getModule5(i) {
+        document.getElementById("placed").innerHTML = "";
+        $.ajax({
+            type: 'GET',
+            url: "/candidate",
+            success: function (result) {
+                document.getElementById("placed").innerHTML = result;
+                eval(document.getElementById("submit_placedForm").innerHTML);
+            }
+        });
+    }
+    function getUserData(user_id) {
+        document.getElementById("user-tasks").innerHTML = "";
+        $.ajax({
+            type: 'GET',
+            url: "/task?userid=" + user_id,
+            success: function (result) {
+                document.getElementById("user-tasks").innerHTML = result;
+                eval(document.getElementById("submit_form").innerHTML);
+            }
+        });
+    }
+    function getUserData1(user_id) {
+        document.getElementById("user-tasks").innerHTML = "";
+        var userid = { 'user_id': user_id };
+        $.ajax({
+            type: 'GET',
+            url: "/task?userid=" + user_id,
+            success: function (result) {
+                document.getElementById("user-tasks").innerHTML = result;
+                eval(document.getElementById("submit_form").innerHTML);
+            }
+        });
+    }
+</script>

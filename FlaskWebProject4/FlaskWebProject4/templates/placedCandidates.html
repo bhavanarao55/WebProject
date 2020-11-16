@@ -1,0 +1,58 @@
+﻿<div style="padding-left:20px">
+    <div id="placedCandidates">
+        <table class="table" data-show-toggle="false" data-paging="true">
+            <thead>
+                <tr>
+                    <th data-breakpoints="sm">First Name</th>
+                    <th>Last Name</th>
+                    <th>Email ID</th>
+                    <th data-breakpoints="sm">Contact Number</th>
+                    <th data-breakpoints="all" data-title="Visa">Visa Status</th>
+                    <th data-breakpoints="all" data-title="Colllege1">College Name 1</th>
+                    <th data-breakpoints="all" data-title="College2">College Name 2</th>
+                    <th data-breakpoints="all" data-title="Tech">Technology</th>
+                    <th data-breakpoints="all" data-title="StartDate">StartDate</th>
+                    <th data-breakpoints="all" data-title="EndDate">EndDate</th>
+                    <th data-breakpoints="all" data-title="Vendor">Vendor</th>
+                    <th data-breakpoints="all" data-title="Client">Client</th>
+                    <th data-breakpoints="all" data-title="JobLocation">Job_Location</th>
+                    <th data-breakpoints="all" data-title="DollarRate">Rate</th>
+                </tr>
+            </thead>
+            {% for row in candidates.candidate_list %}
+            <tbody>
+                <tr class="accordion-toggle">
+                    <td>{{row.Firstname}}</td>
+                    <td>{{row.Lastname}}</td>
+                    <td>{{row.EmailID}}</td>
+                    <td>{{row.Contact_Number}}</td>
+                    <td>{{row.Visa_Status}}</td>
+                    <td>{{row.College_Name1}}</td>
+                    <td>{{row.College_Name2}}</td>
+                    <td>{{row.Technology}}</td>
+                    <td>{{row.Start_Date}}</td>
+                    <td>{{row.End_Date}}</td>
+                    <td>{{row.Vendor_Name}}</td>
+                    <td>{{row.Client_Name}}</td>
+                    <td>{{row.Job_Location}}</td>
+                    <td>{{row.dollarRate_per_hour}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<script>
+    jQuery(function ($) {
+        $('.table').footable({
+            "columns": $.get('columns.json'),
+            "rows": $.get('rows.json')
+        });
+    });
+</script>
+<div id="placedForm">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#placed_candidateModal" value="reset">
+        Add Candidate
+    </button>
+</div>
+{% include 'placedForm.html' %}

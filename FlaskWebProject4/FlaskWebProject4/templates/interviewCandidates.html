@@ -1,0 +1,47 @@
+﻿<div style="padding-left:20px">
+    <div id="interviewCandidates">
+        <table id="interviewTable" class="table" data-show-toggle="false" data-paging="true">
+            <thead>
+                <tr>
+                    <th>Edit</th>
+                    <th data-breakpoints="sm">First Name</th>
+                    <th data-breakpoints="sm">Last Name</th>
+                    <th data-breakpoints="sm">Consultant Name</th>
+                    <th>Date</th>
+                    <th>Vendor_Name</th>
+                    <th data-breakpoints="sm">Technology</th>
+                    <th>Client_Name</th>
+                    <th>Marketed by</th>
+                    <th>Interviewer Names</th>
+                    <th>Feedback</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            {% for row in interviews.interview_list %}
+            <tbody>
+                <tr class="accordion-toggle">
+                    <td id="{{row.candidate_id}}-first_name">{{row.Firstname}}</td>
+                    <td id="{{row.candidate_id}}-last_name">{{row.Lastname}}</td>
+                    <td id="{{row.candidate_id}}-consultant_name">{{row.consultant_name}}</td>
+                    <td id="{{row.candidate_id}}-date">{{row.date}}</td>
+                    <td id="{{row.candidate_id}}-vendor_name">{{row.Vendor_Name}}</td>
+                    <td id="{{row.candidate_id}}-input_Technology">{{row.Technology}}</td>
+                    <td id="{{row.candidate_id}}-client_name">{{row.Client_Name}}</td>
+                    <td id="{{row.candidate_id}}-marketed_by">{{row.Marketed_By}}</td>
+                    <td id="{{row.candidate_id}}-interviewer_names">{{row.Interviewer_Names}}</td>
+                    <td id="{{row.candidate_id}}-feedback">{{row.Feedback}}</td>
+                    <td id="{{row.candidate_id}}-state">{{row.State}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<script>
+</script>
+<div id="interviewForm">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#interview_candidateModal" value="reset">
+        Add Interview Details
+    </button>
+</div>
+{% include 'interviewForm.html' %}

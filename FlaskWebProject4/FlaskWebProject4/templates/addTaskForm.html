@@ -1,0 +1,142 @@
+﻿<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userModalTitle">Add New Entry</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="input_name">Candidate Name</label>
+                            <input type="text" class="form-control" id="input_name" placeholder="Candidate's Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="input_task">Task</label>
+                            <select type="text" class="form-control" id="input_task">
+                                <option>Communication</option>
+                                <option>Meeting</option>
+                                <option>Marketing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="input_details">Vendor Details</label>
+                            <input type="text" class="form-control" id="input_details" placeholder="Give Details">
+                        </div>
+                        <div class="form-group">
+                            <label for="input_technology">Technology</label>
+                            <select type="text" class="form-control" id="input_technology">
+                                <option>Java developers (All modules)</option>
+                                <option>UI developers (All modules)</option>
+                                <option>Devops (Automation tools like Chef, Puppet, Jenkins etc.)</option>
+                                <option>IBM WebSphere Application Server</option>
+                                <option>Oracle Weblogic Application Server</option>
+                                <option>JBoss Application Server</option>
+                                <option>VMWare Admin</option>
+                                <option>Splunk Admin</option>
+                                <option>Service Now Admin</option>
+                                <option>Wild fly</option>
+                                <option>Tomcat Application Server</option>
+                                <option>Apache Web server</option>
+                                <option>IBM HTTP Web server</option>
+                                <option>All kinds of application servers and web servers</option>
+                                <option>Microsoft Windows System Administrators</option>
+                                <option>Red hat Linux System Administrators</option>
+                                <option>Solaris Unix System Administrators</option>
+                                <option>IBM DB2 System Administrators</option>
+                                <option>RSA Aveksa (LNG)</option>
+                                <option>Ping Access</option>
+                                <option>Ping Federate</option>
+                                <option>CA Siteminder</option>
+                                <option>CA Identity Manager</option>
+                                <option>Sailpoint Access Manager</option>
+                                <option>Sailpoint Identity Manager</option>
+                                <option>IBM Tivoli Access Manager</option>
+                                <option>IBM Tivoli Identity Manager</option>
+                                <option>NetIQ Access Manager</option>
+                                <option>NetIQ Identity Manager</option>
+                                <option>Oracle Access Manager</option>
+                                <option>Oracle Identity Manager</option>
+                                <option>Other Identity and Access Manager products</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="input_source">Source</label>
+                            <select type="text" class="form-control" id="input_source">
+                                <option>Dice</option>
+                                <option>LinkedIn</option>
+                                <option>Google</option>
+                                <option>Indeed</option>
+                                <option>Glass Door</option>
+                                <option>Internal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="input_weblink">Link</label>
+                            <input type="text" class="form-control" id="input_weblink" placeholder="Website's link">
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="input_time_minutes">Time Spent</label>
+                            </div>
+                            <div>
+                                <div style="float: left;">
+                                    <select type="text" class="form-control" id="input_time_minutes" style="float: right;">
+                                        <option>0</option>
+                                        <option selected>5</option>
+                                        <option>10</option>
+                                        <option>15</option>
+                                        <option>20</option>
+                                        <option>25</option>
+                                        <option>30</option>
+                                        <option>40</option>
+                                        <option>50</option>
+                                        <option>60</option>
+                                        <option>70</option>
+                                        <option>80</option>
+                                    </select>
+                                </div>
+                                <div style="float: left;">mins</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <label for="input_notes">Notes</label>
+                            <input type="text" class="form-control" id="input_notes" placeholder="Add files and some comments">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="form_submit" type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="submit_form">
+    $(document).ready(function () {
+        $("#form_submit").click(function () {
+            $.post("/submitEntry",
+                {
+                    name: $('#input_name').val(),
+                    task: $('#input_task').val(),
+                    details: $('#input_details').val(),
+                    technology: $('#input_technology').val(),
+                    source: $('#input_source').val(),
+                    link: $('#input_weblink').val(),
+                    time: $('#input_time_minutes').val(),
+                    notes: $('#input_notes').val()
+                },
+                function(data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                    $('#userModalTitle').modal('hide');
+                });
+        });
+    });
+</script>

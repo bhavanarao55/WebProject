@@ -1,0 +1,64 @@
+﻿<div style="padding-left:20px">
+    <div id="placedForm">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#onboarding_Modal" value="reset">
+            Add Files
+        </button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="onboarding_Modal" tabindex="-1" role="dialog" aria-labelledby="onboarding_ModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="onboarding_ModalTitle">Add Files</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="Enter Candidate's First Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="Enter Candidate's Last Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Recruiter Name</label>
+                            <input type="text" class="form-control" id="recruiter_name" placeholder="Enter Recruiter's Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Attach Files</label>
+                            <input type="file" class="form-control-file" id="add_files" placeholder="Enter Email ID">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="onboardingForm_submit" type="button" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="submit_placedForm">
+    $(document).ready(function () {
+        $("#onboardingForm_submit").click(function () {
+            $.ajax({
+                type: 'GET',
+                url: "/onboarding",
+                contentType: 'application/json;charset=UTF-8',
+                data: {
+                    Firstname: document.getElementById("first_name").value,
+                    Lastname: $('#last_name').val(),
+                    EmailID: $('#recruiter_name').val(),
+                    Contact_Number: $('#add_files').val()
+                },
+                success: function (result) {
+                    $('#placed_candidateModal').modal('hide')
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,46 @@
+﻿<div class="container">
+    <div id="result">
+        <table class="table" data-paging="true">
+            <thead>
+                <tr>
+                    <th data-breakpoints="sm">Name</th>
+                    <th>Task</th>
+                    <th>Details</th>
+                    <th>Technology</th>
+                    <th>Source</th>
+                    <th>Link</th>
+                    <th>Time</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            {% for row in tasks.task_list %}
+            <tbody>
+                <tr>
+                    <td>{{row.name}}</td>
+                    <td>{{row.task}}</td>
+                    <td>{{row.details}}</td>
+                    <td>{{row.technology}}</td>
+                    <td>{{row.source}}</td>
+                    <td>{{row.link}}</td>
+                    <td>{{row.time}}</td>
+                    <td>{{row.notes}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<script>
+    jQuery(function ($) {
+        $('.table').footable({
+            "columns": $.get('columns.json'),
+            "rows": $.get('rows.json')
+        });
+    });
+</script>
+<div id="addForm">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#userModal" value="reset">
+        Add
+    </button>
+</div>
+{% include 'addTaskForm.html' %}

@@ -1,0 +1,87 @@
+﻿<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="hiring_candidateModal" tabindex="-1" role="dialog" aria-labelledby="hiring_candidateModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hiring_candidateModalTitle">Add Candidate</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="Enter Candidate's First Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="Enter Candidate's Last Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email ID</label>
+                            <input type="text" class="form-control" id="email_id" placeholder="Enter Email ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="text" class="form-control" id="contact_number" placeholder="Enter Candidate's Contact Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="visa_status">Visa Status</label>
+                            <select type="text" class="form-control" id="visa_status">
+                                <option>F1 CPT</option>
+                                <option>F1 OPT</option>
+                                <option>F1 OPT Ext</option>
+                                <option>H1B</option>
+                                <option>Work Auth</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>College Name 1</label>
+                            <input type="text" class="form-control" id="college_name1" placeholder="Enter Candidate's First College Name">
+                        </div>
+                        <div class="form-group">
+                            <label>College Name 2</label>
+                            <input type="text" class="form-control" id="college_name2" placeholder="Enter Candidate's Second College Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Reference</label>
+                            <input type="text" class="form-control" id="reference" placeholder="Enter Referencee Name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="hiringForm_submit" type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="submit_hiringForm">
+        $(document).ready(function () {
+            $("#hiringForm_submit").click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: "/submitHiringCandidate",
+                    contentType: 'application/json;charset=UTF-8',
+                    data: {
+                        Firstname: $('#first_name').val(),
+                        Lastname: $('#last_name').val(),
+                        EmailID: $('#email_id').val(),
+                        Contact_Number: $('#contact_number').val(),
+                        Visa_Status: $('#visa_status').val(),
+                        College_Name1: $('#college_name1').val(),
+                        College_Name2: $('#college_name2').val(),
+                        reference: $('#reference').val()
+                    },
+                    success: function (result) {
+                        $('#hiring_candidateModal').modal('hide')
+                        document.getElementById("hiring").innerHTML = result;
+                        eval(document.getElementById("submit_hiringForm").innerHTML);
+                    }
+                });
+            });
+        });
+</script>

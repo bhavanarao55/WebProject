@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>8f5a7b4d-e367-4bfc-aed2-0998a3488ed5</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>runserver.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+    <Name>FlaskWebProject4</Name>
+    <RootNamespace>FlaskWebProject4</RootNamespace>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="FlaskWebProject4\DAO\dbConnection.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\GetCandidates.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\GetInterviews.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\GetRandomId.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\GetTasks.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\GetUsers.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\SubmitEntry.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\SubmitHiringCandidate.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\SubmitInterviewCandidate.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\SubmitPlacedCandidate.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\DAO\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ModelBuilders\CandidatesMB.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ModelBuilders\InterviewsMB.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ModelBuilders\TasksMB.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ModelBuilders\UsersMB.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ModelBuilders\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\Models\Candidate.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\Models\Interview.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\Models\Task.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\Models\User.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\Models\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\Utils\RandomGeneration.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\Utils\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ViewModels\Candidates.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ViewModels\Interviews.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ViewModels\Tasks.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ViewModels\Users.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskWebProject4\ViewModels\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="runserver.py" />
+    <Compile Include="FlaskWebProject4\__init__.py" />
+    <Compile Include="FlaskWebProject4\views.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FlaskWebProject4\" />
+    <Folder Include="FlaskWebProject4\DAO\" />
+    <Folder Include="FlaskWebProject4\ModelBuilders\" />
+    <Folder Include="FlaskWebProject4\Models\" />
+    <Folder Include="FlaskWebProject4\static\images\" />
+    <Folder Include="FlaskWebProject4\ViewModels\" />
+    <Folder Include="FlaskWebProject4\Utils\" />
+    <Folder Include="FlaskWebProject4\static\" />
+    <Folder Include="FlaskWebProject4\static\content\" />
+    <Folder Include="FlaskWebProject4\static\fonts\" />
+    <Folder Include="FlaskWebProject4\static\scripts\" />
+    <Folder Include="FlaskWebProject4\templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FlaskWebProject4\static\images\ajax-loader.gif" />
+    <Content Include="FlaskWebProject4\templates\addTaskForm.html" />
+    <Content Include="FlaskWebProject4\templates\hiring.html" />
+    <Content Include="FlaskWebProject4\templates\hiringForm.html" />
+    <Content Include="FlaskWebProject4\templates\home.html" />
+    <Content Include="FlaskWebProject4\templates\interviewCandidates.html" />
+    <Content Include="FlaskWebProject4\templates\interviewForm.html" />
+    <Content Include="FlaskWebProject4\templates\marketing.html" />
+    <Content Include="FlaskWebProject4\templates\onboarding.html" />
+    <Content Include="FlaskWebProject4\templates\placedCandidates.html" />
+    <Content Include="FlaskWebProject4\templates\placedForm.html" />
+    <Content Include="FlaskWebProject4\templates\staffing.html" />
+    <Content Include="FlaskWebProject4\templates\statistics.html" />
+    <Content Include="FlaskWebProject4\templates\Task.html" />
+    <Content Include="requirements.txt" />
+    <Content Include="FlaskWebProject4\static\content\bootstrap.css" />
+    <Content Include="FlaskWebProject4\static\content\bootstrap.min.css" />
+    <Content Include="FlaskWebProject4\static\content\site.css" />
+    <Content Include="FlaskWebProject4\static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="FlaskWebProject4\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="FlaskWebProject4\static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="FlaskWebProject4\static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="FlaskWebProject4\static\scripts\bootstrap.js" />
+    <Content Include="FlaskWebProject4\static\scripts\bootstrap.min.js" />
+    <Content Include="FlaskWebProject4\static\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="FlaskWebProject4\static\scripts\jquery-1.10.2.js" />
+    <Content Include="FlaskWebProject4\static\scripts\jquery-1.10.2.min.js" />
+    <Content Include="FlaskWebProject4\static\scripts\jquery-1.10.2.min.map" />
+    <Content Include="FlaskWebProject4\static\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="FlaskWebProject4\static\scripts\jquery.validate.js" />
+    <Content Include="FlaskWebProject4\static\scripts\jquery.validate.min.js" />
+    <Content Include="FlaskWebProject4\static\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="FlaskWebProject4\static\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="FlaskWebProject4\static\scripts\modernizr-2.6.2.js" />
+    <Content Include="FlaskWebProject4\static\scripts\respond.js" />
+    <Content Include="FlaskWebProject4\static\scripts\respond.min.js" />
+    <Content Include="FlaskWebProject4\static\scripts\_references.js" />
+    <Content Include="FlaskWebProject4\templates\about.html" />
+    <Content Include="FlaskWebProject4\templates\contact.html" />
+    <Content Include="FlaskWebProject4\templates\index.html" />
+    <Content Include="FlaskWebProject4\templates\layout.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.8</Version>
+      <Description>env (Python 3.8 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

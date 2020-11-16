@@ -1,0 +1,151 @@
+﻿<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="placed_candidateModal" tabindex="-1" role="dialog" aria-labelledby="placed_candidateModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="placed_candidateModalTitle">Add Candidate</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="Enter Candidate's First Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="Enter Candidate's Last Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email ID</label>
+                            <input type="text" class="form-control" id="email_id" placeholder="Enter Email ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="text" class="form-control" id="contact_number" placeholder="Enter Candidate's Contact Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="visa_status">Visa Status</label>
+                            <select type="text" class="form-control" id="visa_status">
+                                <option>F1 CPT</option>
+                                <option>F1 OPT</option>
+                                <option>F1 OPT Ext</option>
+                                <option>H1B</option>
+                                <option>Work Auth</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>College Name 1</label>
+                            <input type="text" class="form-control" id="college_name1" placeholder="Enter Candidate's First College Name">
+                        </div>
+                        <div class="form-group">
+                            <label>College Name 2</label>
+                            <input type="text" class="form-control" id="college_name2" placeholder="Enter Candidate's Second College Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Technology</label>
+                            <select type="text" class="form-control" id="input_Technology">
+                                <option>Java developers (All modules)</option>
+                                <option>UI developers (All modules)</option>
+                                <option>OKTA</option>
+                                <option>Devops (Automation tools like Chef, Puppet, Jenkins etc.)</option>
+                                <option>IBM WebSphere Application Server</option>
+                                <option>Oracle Weblogic Application Server</option>
+                                <option>JBoss Application Server</option>
+                                <option>VMWare Admin</option>
+                                <option>Splunk Admin</option>
+                                <option>Service Now Admin</option>
+                                <option>Wild fly</option>
+                                <option>Tomcat Application Server</option>
+                                <option>Apache Web server</option>
+                                <option>IBM HTTP Web server</option>
+                                <option>All kinds of application servers and web servers</option>
+                                <option>Microsoft Windows System Administrators</option>
+                                <option>Red hat Linux System Administrators</option>
+                                <option>Solaris Unix System Administrators</option>
+                                <option>IBM DB2 System Administrators</option>
+                                <option>RSA Aveksa (LNG)</option>
+                                <option>Ping Access</option>
+                                <option>Ping Federate</option>
+                                <option>CA Siteminder</option>
+                                <option>CA Identity Manager</option>
+                                <option>Sailpoint Access Manager</option>
+                                <option>Sailpoint Identity Manager</option>
+                                <option>IBM Tivoli Access Manager</option>
+                                <option>IBM Tivoli Identity Manager</option>
+                                <option>NetIQ Access Manager</option>
+                                <option>NetIQ Identity Manager</option>
+                                <option>Oracle Access Manager</option>
+                                <option>Oracle Identity Manager</option>
+                                <option>Other Identity and Access Manager products</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input type="text" class="form-control" id="start_date" placeholder="Enter Candidate's Work Start Date">
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="text" class="form-control" id="end_date" placeholder="Enter Candidate's Work End Date">
+                        </div>
+                        <div class="form-group">
+                            <label>Vendor's Name</label>
+                            <input type="text" class="form-control" id="vendor_name" placeholder="Enter Vendor's Details">
+                        </div>
+                        <div class="form-group">
+                            <label>Client's Name</label>
+                            <input type="text" class="form-control" id="client_name" placeholder="Enter Client's Details">
+                        </div>
+                        <div class="form-group">
+                            <label>Job Location</label>
+                            <input type="text" class="form-control" id="job_location" placeholder="Enter Candidate's Work Location">
+                        </div>
+                        <div class="form-group">
+                            <label>$Rate per Hour</label>
+                            <input type="text" class="form-control" id="dollar_rate_per_hour" placeholder="Enter Candidate's Working dollar per hour">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="placedForm_submit" type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="submit_placedForm">
+    $(document).ready(function () {
+        $("#placedForm_submit").click(function () {
+            $.ajax({
+                type: 'GET',
+                url: "/submitPlacedCandidate",
+                contentType: 'application/json;charset=UTF-8',
+                data: {
+                    Firstname: document.getElementById("first_name").value,
+                    Lastname: $('#last_name').val(),
+                    EmailID: $('#email_id').val(),
+                    Contact_Number: $('#contact_number').val(),
+                    Visa_Status: $('#visa_status').val(),
+                    College_Name1: $('#college_name1').val(),
+                    College_Name2: $('#college_name2').val(),
+                    Technology: $('#input_Technology').val(),
+                    StartDate: $('#start_date').val(),
+                    EndDate: $('#end_date').val(),
+                    Vendor_Name: $('#vendor_name').val(),
+                    Client_Name: $('#client_name').val(),
+                    Job_Location: $('#job_location').val(),
+                    dollarRate_per_hour: $('#dollar_rate_per_hour').val()
+                },
+                success: function (result) {
+                    $('#placed_candidateModal').modal('hide')
+                    document.getElementById("placed").innerHTML = result;
+                    eval(document.getElementById("submit_placedForm").innerHTML);
+                }
+            });
+        });
+    });
+</script>
