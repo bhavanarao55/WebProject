@@ -1,4 +1,4 @@
-﻿<div style="padding-left:20px">
+﻿<div>
     <div id="interviewCandidates">
         <table id="interviewTable" class="table" data-show-toggle="false" data-paging="true">
             <thead>
@@ -19,18 +19,65 @@
             </thead>
             {% for row in interviews.interview_list %}
             <tbody>
-                <tr class="accordion-toggle">
-                    <td id="{{row.candidate_id}}-first_name">{{row.Firstname}}</td>
-                    <td id="{{row.candidate_id}}-last_name">{{row.Lastname}}</td>
-                    <td id="{{row.candidate_id}}-consultant_name">{{row.consultant_name}}</td>
-                    <td id="{{row.candidate_id}}-date">{{row.date}}</td>
-                    <td id="{{row.candidate_id}}-vendor_name">{{row.Vendor_Name}}</td>
-                    <td id="{{row.candidate_id}}-input_Technology">{{row.Technology}}</td>
-                    <td id="{{row.candidate_id}}-client_name">{{row.Client_Name}}</td>
-                    <td id="{{row.candidate_id}}-marketed_by">{{row.Marketed_By}}</td>
-                    <td id="{{row.candidate_id}}-interviewer_names">{{row.Interviewer_Names}}</td>
-                    <td id="{{row.candidate_id}}-feedback">{{row.Feedback}}</td>
-                    <td id="{{row.candidate_id}}-state">{{row.State}}</td>
+                <tr class="accordion-toggle" id="{{row.candidate_id}}-interviewRow">
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-2">
+                                <button style="display: block;" id="{{row.candidate_id}}-editInterview" type='submit' onclick="interviewEdit('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <span class='glyphicon glyphicon-edit' />
+                                </button>
+                                <button style="display: none;" id="{{row.candidate_id}}-saveInterview" type='submit' onclick="interviewgSave('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Save">
+                                    <span class='glyphicon glyphicon-floppy-disk' />
+                                </button>
+                                <button style="display: none;" id="{{row.candidate_id}}-cancelInterview" type='submit' onclick="interviewCancel('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Cancel">
+                                    <span class='glyphicon glyphicon-remove' />
+                                </button>
+                                <button style="display: none;" id="{{row.candidate_id}}-deleteInterview" type='submit' onclick="interviewDelete('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <span class='glyphicon glyphicon-trash' />
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.Firstname}}</p>
+                        <input id="{{row.candidate_id}}-first_name" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.Firstname}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.Lastname}}</p>
+                        <input id="{{row.candidate_id}}-last_name" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.Lastname}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.date}}</p>
+                        <input id="{{row.candidate_id}}-date" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.date}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.Vendor_Name}}</p>
+                        <input id="{{row.candidate_id}}-vendor_name" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.Firstname}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.Technology}}</p>
+                        <input id="{{row.candidate_id}}-input_technology" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.Vendor_Name}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.Client_Name}}</p>
+                        <input id="{{row.candidate_id}}-client_name" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.Client_Name}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.Marketed_By}}</p>
+                        <input id="{{row.candidate_id}}-marketed_by" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.Marketed_By}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.Interviewer_Names}}</p>
+                        <input id="{{row.candidate_id}}-interviewer_names" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.Interviewer_Names}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.Feedback}}</p>
+                        <input id="{{row.candidate_id}}-feedback" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.Feedback}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="interview-static-{{row.candidate_id}}">{{row.State}}</p>
+                        <input id="{{row.candidate_id}}-state" type="text" class="interview-edit-{{row.candidate_id}} form-control" value="{{row.State}}" style="display:none;" />
+                    </td>
                 </tr>
             </tbody>
             {% endfor %}

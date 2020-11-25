@@ -8,5 +8,5 @@ class InterviewsMB(object):
         interviews = Interviews()
         result = getInterviews()
         for row in result:
-            interviews.add_interview(Interview(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9]),row[10,row[11]])
+            interviews.add_interview(Interview(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10]))
         return interviews

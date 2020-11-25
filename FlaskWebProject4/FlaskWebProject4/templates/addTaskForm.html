@@ -1,4 +1,4 @@
-﻿<div class="container">
+﻿<div>
     <!-- Modal -->
     <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -122,7 +122,7 @@
 <script id="submit_form">
     $(document).ready(function () {
         $("#form_submit").click(function () {
-            $.post("/submitEntry",
+            $.get("/submitEntry",
                 {
                     name: $('#input_name').val(),
                     task: $('#input_task').val(),
@@ -134,8 +134,9 @@
                     notes: $('#input_notes').val()
                 },
                 function(data, status) {
-                    alert("Data: " + data + "\nStatus: " + status);
                     $('#userModalTitle').modal('hide');
+                    document.getElementById("Task").innerHTML = result;
+                    eval(document.getElementById("submit_form").innerHTML);
                 });
         });
     });

@@ -1,16 +1,36 @@
-﻿<div style="padding-left:20px">
+﻿<div>
     <div id="hiring">
-        <table class="table" data-show-toggle="false" data-paging="true" data-editing-show-text='<span class="fooicon fooicon-pencil" aria-hidden="true"></span> Edit rows'>
+        <table class="table" data-show-toggle="false" data-paging="true">
             <thead>
-                <tr>
+                <tr class="footable-filtering">
+                    <th colspan="4">
+                        <form class="form-inline">
+                            <div class="form-group footable-filtering-search">
+                            <label class="sr-only">Search</label>
+                            <div class="input-group">
+                                <input id="hiringSearch" oninput="Search()" type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </th>
+                </tr>
+                <tr class="footable-header">
                     <th>Edit</th>
                     <th data-breakpoints="sm">First Name</th>
                     <th>Last Name</th>
                     <th>Email ID</th>
-                    <th data-breakpoints="sm">Contact Number</th>
+                    <th>India Number</th>
+                    <th data-breakpoints="sm">US Number</th>
                     <th data-breakpoints="sm">Visa Status</th>
                     <th data-breakpoints="sm">College Name 1</th>
                     <th data-breakpoints="sm">College Name 2</th>
+                    <th>India Address</th>
+                    <th>US Address</th>
                     <th data-breakpoints="sm">Reference</th>
                 </tr>
             </thead>
@@ -19,53 +39,71 @@
                 <tr class="accordion-toggle" id="{{row.candidate_id}}-hiringRow">
                     <td>
                         <div class="form-group">
-                        <div class="col-md-6 col-md-offset-2">
-                            <button style="display: block;" id="{{row.candidate_id}}-editHiring" type='submit' onclick="hiringEdit('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Edit">
-                                <span class='glyphicon glyphicon-edit' />
-                            </button>
-                            <button style="display: none;" id="{{row.candidate_id}}-saveHiring" type='submit' onclick="hiringSave('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Save">
-                                <span class='glyphicon glyphicon-floppy-disk' />
-                            </button>
-                            <button style="display: none;" id="{{row.candidate_id}}-cancelHiring" type='submit' onclick="hiringCancel('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Cancel">
-                                <span class='glyphicon glyphicon-remove' />
-                            </button>
-                            <button style="display: none;" id="{{row.candidate_id}}-deleteHiring" type='submit' onclick="hiringDelete('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Delete">
-                                <span class='glyphicon glyphicon-trash' />
-                            </button>
-                        </div>
+                            <div class="col-md-6 col-md-offset-2">
+                                <button style="display: block;" id="{{row.candidate_id}}-editHiring" type='submit' onclick="hiringEdit('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <span class='glyphicon glyphicon-edit' />
+                                </button>
+                                <button style="display: none;" id="{{row.candidate_id}}-saveHiring" type='submit' onclick="hiringSave('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Save">
+                                    <span class='glyphicon glyphicon-floppy-disk' />
+                                </button>
+                                <button style="display: none;" id="{{row.candidate_id}}-cancelHiring" type='submit' onclick="hiringCancel('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Cancel">
+                                    <span class='glyphicon glyphicon-remove' />
+                                </button>
+                                <button style="display: none;" id="{{row.candidate_id}}-deleteHiring" type='submit' onclick="hiringDelete('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <span class='glyphicon glyphicon-trash' />
+                                </button>
+                            </div>
                         </div>
                     </td>
                     <td id="{{row.candidate_id}}-first_name">
                         <p class="hiring-static-{{row.candidate_id}}">{{row.Firstname}}</p>
-                        <input type="text" class="hiring-edit-{{row.candidate_id}}" value="{{row.Firstname}}" style="display:none;"/>
+                        <input id="{{row.candidate_id}}-first_name" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.Firstname}}" style="display:none;" />
                     </td>
                     <td id="{{row.candidate_id}}-last_name">
                         <p class="hiring-static-{{row.candidate_id}}">{{row.Lastname}}</p>
-                        <input type="text" class="hiring-edit-{{row.candidate_id}}" value="{{row.Lastname}}" style="display:none;" />
+                        <input id="{{row.candidate_id}}-last_name" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.Lastname}}" style="display:none;" />
                     </td>
                     <td id="{{row.candidate_id}}-email_id">
                         <p class="hiring-static-{{row.candidate_id}}">{{row.EmailID}}</p>
-                        <input type="text" class="hiring-edit-{{row.candidate_id}}" value="{{row.EmailID}}" style="display:none;" />
+                        <input id="{{row.candidate_id}}-email_id" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.EmailID}}" style="display:none;" />
                     </td>
-                    <td id="{{row.candidate_id}}-contact_number">
-                        <p class="hiring-static-{{row.candidate_id}}">{{row.Contact_Number}}</p>
-                        <input type="text" class="hiring-edit-{{row.candidate_id}}" value="{{row.Contact_Number}}" style="display:none;" />
+                    <td id="{{row.candidate_id}}-india_number">
+                        <p class="hiring-static-{{row.candidate_id}}">{{row.India_Number}}</p>
+                        <input id="{{row.candidate_id}}-india_number" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.India_Number}}" style="display:none;" />
+                    </td>
+                    <td id="{{row.candidate_id}}-us_number">
+                        <p class="hiring-static-{{row.candidate_id}}">{{row.US_Number}}</p>
+                        <input id="{{row.candidate_id}}-us_number" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.US_Number}}" style="display:none;" />
                     </td>
                     <td id="{{row.candidate_id}}-visa_status">
                         <p class="hiring-static-{{row.candidate_id}}">{{row.Visa_Status}}</p>
-                        <input type="text" class="hiring-edit-{{row.candidate_id}}" value="{{row.Visa_Status}}" style="display:none;" />
+                        <select id="{{row.candidate_id}}-visa_status" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.Visa_Status}}" style="display:none;">
+                            <option>F1 CPT</option>
+                            <option>F1 OPT</option>
+                            <option>F1 OPT Ext</option>
+                            <option>H1B</option>
+                            <option>Work Auth</option>
+                        </select>
                     </td>
                     <td id="{{row.candidate_id}}-college_name1">
                         <p class="hiring-static-{{row.candidate_id}}">{{row.College_Name1}}</p>
-                        <input type="text" class="hiring-edit-{{row.candidate_id}}" value="{{row.College_Name1}}" style="display:none;" />
+                        <input id="{{row.candidate_id}}-college_name1" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.College_Name1}}" style="display:none;" />
                     </td>
                     <td id="{{row.candidate_id}}-college_name2">
                         <p class="hiring-static-{{row.candidate_id}}">{{row.College_Name2}}</p>
-                        <input type="text" class="hiring-edit-{{row.candidate_id}}" value="{{row.College_Name2}}" style="display:none;" />
+                        <input id="{{row.candidate_id}}-college_name2" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.College_Name2}}" style="display:none;" />
+                    </td>
+                    <td id="{{row.candidate_id}}-india_address">
+                        <p class="hiring-static-{{row.candidate_id}}">{{row.India_Address}}</p>
+                        <input id="{{row.candidate_id}}-india_address" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.India_Address}}" style="display:none;" />
+                    </td>
+                    <td id="{{row.candidate_id}}-us`_address">
+                        <p class="hiring-static-{{row.candidate_id}}">{{row.US_Address}}</p>
+                        <input id="{{row.candidate_id}}-us_address" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.US_Address}}" style="display:none;" />
                     </td>
                     <td id="{{row.candidate_id}}-reference">
                         <p class="hiring-static-{{row.candidate_id}}">{{row.reference}}</p>
-                        <input type="text" class="hiring-edit-{{row.candidate_id}}" value="{{row.reference}}" style="display:none;" />
+                        <input id="{{row.candidate_id}}-reference" type="text" class="hiring-edit-{{row.candidate_id}} form-control" value="{{row.reference}}" style="display:none;" />
                     </td>
                 </tr>
             </tbody>

@@ -8,7 +8,6 @@ def submitEntry(name, task, details, technology, source, link, time, notes):
     sql = "INSERT INTO TASKS (task_id, name, task, details, technology, source, link, time, notes)" \
           "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
     args = (get_task_id(), name, task, details, technology, source, link, time, notes)
-
     try:
         mycursor.execute(sql, args)
     except mysql.connector.Error as err:

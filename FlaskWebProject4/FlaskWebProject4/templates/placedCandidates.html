@@ -1,8 +1,9 @@
-﻿<div style="padding-left:20px">
+﻿<div>
     <div id="placedCandidates">
         <table class="table" data-show-toggle="false" data-paging="true">
             <thead>
                 <tr>
+                    <th>Edit</th>
                     <th data-breakpoints="sm">First Name</th>
                     <th>Last Name</th>
                     <th>Email ID</th>
@@ -21,21 +22,103 @@
             </thead>
             {% for row in candidates.candidate_list %}
             <tbody>
-                <tr class="accordion-toggle">
-                    <td>{{row.Firstname}}</td>
-                    <td>{{row.Lastname}}</td>
-                    <td>{{row.EmailID}}</td>
-                    <td>{{row.Contact_Number}}</td>
-                    <td>{{row.Visa_Status}}</td>
-                    <td>{{row.College_Name1}}</td>
-                    <td>{{row.College_Name2}}</td>
-                    <td>{{row.Technology}}</td>
-                    <td>{{row.Start_Date}}</td>
-                    <td>{{row.End_Date}}</td>
-                    <td>{{row.Vendor_Name}}</td>
-                    <td>{{row.Client_Name}}</td>
-                    <td>{{row.Job_Location}}</td>
-                    <td>{{row.dollarRate_per_hour}}</td>
+                <tr class="accordion-toggle" id="{{row.candidate_id}}-hiringRow">
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-2">
+                                <button style="display: block;" id="{{row.candidate_id}}-editPlaced" type='submit' onclick="placedEdit('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <span class='glyphicon glyphicon-edit' />
+                                </button>
+                                <button style="display: none;" id="{{row.candidate_id}}-savePlaced" type='submit' onclick="placedSave('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Save">
+                                    <span class='glyphicon glyphicon-floppy-disk' />
+                                </button>
+                                <button style="display: none;" id="{{row.candidate_id}}-cancelPlaced" type='submit' onclick="placedCancel('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Cancel">
+                                    <span class='glyphicon glyphicon-remove' />
+                                </button>
+                                <button style="display: none;" id="{{row.candidate_id}}-deletePlaced" type='submit' onclick="placedDelete('{{row.candidate_id}}')" class='btn btn-light btn-md col-md-0.5' data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <span class='glyphicon glyphicon-trash' />
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.Firstname}}</p>
+                        <input id="{{row.candidate_id}}-first_name" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.Firstname}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.Lastname}}</p>
+                        <input id="{{row.candidate_id}}-last_name" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.Lastname}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.EmailID}}</p>
+                        <input id="{{row.candidate_id}}-email_id" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.EmailID}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.India_Number}}</p>
+                        <input id="{{row.candidate_id}}-india_number" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.India_Number}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.US_Number}}</p>
+                        <input id="{{row.candidate_id}}-us_number" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.US_Number}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.Visa_Status}}</p>
+                        <select id="{{row.candidate_id}}-visa_status" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.Visa_Status}}" style="display:none;">
+                            <option>F1 CPT</option>
+                            <option>F1 OPT</option>
+                            <option>F1 OPT Ext</option>
+                            <option>H1B</option>
+                            <option>Work Auth</option>
+                        </select>
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.College_Name1}}</p>
+                        <input id="{{row.candidate_id}}-college_name1" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.College_Name1}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.College_Name2}}</p>
+                        <input id="{{row.candidate_id}}-college_name2" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.College_Name2}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.Technology}}</p>
+                        <input id="{{row.candidate_id}}-input_Technology" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.Technology}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.StartDate}}</p>
+                        <input id="{{row.candidate_id}}-start_date" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.StartDate}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.EndDate}}</p>
+                        <input id="{{row.candidate_id}}-end_date" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.EndDate}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.Vendor_Name}}</p>
+                        <input id="{{row.candidate_id}}-vendor_name" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.Vendor_Name}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.Client_Name}}</p>
+                        <input id="{{row.candidate_id}}-client_name" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.Client_Name}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.Job_Location}}</p>
+                        <input id="{{row.candidate_id}}-job_location" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.Job_Location}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.dollarRate_per_hour}}</p>
+                        <input id="{{row.candidate_id}}-dollar_rate_per_hour" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.dollarRate_per_hour}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="placed-static-{{row.candidate_id}}">{{row.India_Address}}</p>
+                        <input id="{{row.candidate_id}}-india_address" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.India_Address}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="hiring-static-{{row.candidate_id}}">{{row.US_Address}}</p>
+                        <input id="{{row.candidate_id}}-us_address" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.US_Address}}" style="display:none;" />
+                    </td>
+                    <td>
+                        <p class="hiring-static-{{row.candidate_id}}">{{row.reference}}</p>
+                        <input id="{{row.candidate_id}}-reference" type="text" class="placed-edit-{{row.candidate_id}} form-control" value="{{row.reference}}" style="display:none;" />
+                    </td>
                 </tr>
             </tbody>
             {% endfor %}

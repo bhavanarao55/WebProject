@@ -11,7 +11,10 @@ from FlaskWebProject4.DAO.SubmitEntry import submitEntry
 from FlaskWebProject4.DAO.SubmitPlacedCandidate import submitPlacedCandidate
 from FlaskWebProject4.DAO.SubmitHiringCandidate import submitHiringCandidate
 from FlaskWebProject4.DAO.SubmitInterviewCandidate import submitInterviewCandidate
-from FlaskWebProject4.DAO.GetCandidates import deleteHiringCandidate
+from FlaskWebProject4.DAO.GetCandidates import deleteHiringCandidate, deletePlacedCandidate
+from FlaskWebProject4.DAO.GetCandidates import saveHiringCandidate
+from FlaskWebProject4.DAO.GetTasks import deleteTask
+from FlaskWebProject4.DAO.GetInterviews import deleteInterviewCandidate
 
 @app.route('/')
 @app.route('/home')
@@ -35,10 +38,45 @@ def task():
     user_id = request.args.get('userid')
     return render_template('task.html', tasks=TasksMB().getTasksModel(user_id))
 
+@app.route('/taskDelete', methods=['GET'])
+def taskDelete():
+    tid = request.args.get('task_id')
+    deleteTask(tid)
+    return "success"
+
+@app.route('/interviewDelete', methods=['GET'])
+def interviewDelete():
+    tid = request.args.get('candidate_id')
+    deleteInterviewCandidate(cid)
+    return "success"
+
+@app.route('/placedDelete', methods=['GET'])
+def placedDelete():
+    cid = request.args.get('candidate_id')
+    deletePlacedCandidate(cid)
+    return "success"
+
 @app.route('/hiringDelete', methods=['GET'])
 def hiringDelete():
     cid = request.args.get('candidate_id')
     deleteHiringCandidate(cid)
+    return "success"
+
+@app.route('/hiringSave', methods=['GET'])
+def hiringSave():
+    cid = request.args.get("candidate_id"),
+    Firstname = request.args.get("Firstname"),
+    Lastname = request.args.get('Lastname'),
+    EmailID = request.args.get('EmailID'),
+    India_Number = request.args.get('India_Number'),
+    US_Number = request.args.get('US_Number'),
+    Visa_Status = request.args.get('Visa_Status'),
+    College_Name1 = request.args.get('College_Name1'),
+    College_Name2 = request.args.get('College_Name2'),
+    India_Address = request.args.get('India_Address'),
+    US_Address = request.args.get('US_Address'),
+    reference = request.args.get('reference')
+    saveHiringCandidate(cid,Firstname,Lastname,EmailID,India_Number,US_Number,Visa_Status,College_Name1,College_Name2,India_Address,US_Address,reference)
     return "success"
 
 @app.route('/candidate', methods=['GET'])
@@ -49,25 +87,27 @@ def candidate():
 def interview():
     return render_template('interviewCandidates.html', interviews=InterviewsMB().getInterviewCandidatesModel())
 
-@app.route('/submitEntry', methods=['POST'])
+@app.route('/submitEntry', methods=['GET'])
 def Entry():
-    submitEntry(task_id = request.form['task_id'],
-                name =  request.form['name'],
-                task = request.form['task'],
-                details = request.form['task'],
-                technology = request.form['technology'],
-                source = request.form['source'],
-                link = request.form['link'],
-                time = request.form['time'],
-                notes = request.form['notes'])
-    return "success"
+    user_id = request.args.get('userid')
+    submitEntry(
+                name =  request.args.get('name'),
+                task = request.args.get('task'),
+                details = request.args.get('task'),
+                technology = request.args.get('technology'),
+                source = request.args.get('source'),
+                link = request.args.get('link'),
+                time = request.args.get('time'),
+                notes = request.args.get('notes'))
+    return render_template('Task.html', tasks=TasksMB().getTasksModel(user_id))
 
 @app.route('/submitPlacedCandidate', methods=['GET'])
 def Placed():
     submitPlacedCandidate(Firstname = request.args.get('Firstname'),
                 Lastname = request.args.get('Lastname'),
                 EmailID = request.args.get('EmailID'),
-                Contact_Number = request.args.get('Contact_Number'),
+                India_Number = request.args.get('India_Number'),
+                US_Number = request.args.get('US_Number'),
                 Visa_Status = request.args.get('Visa_Status'),
                 College_Name1 = request.args.get('College_Name1'),
                 College_Name2 = request.args.get('College_Name2'),
@@ -77,7 +117,10 @@ def Placed():
                 Vendor_Name = request.args.get('Vendor_Name'),
                 Client_Name = request.args.get('Client_Name'),
                 Job_Location = request.args.get('Job_Location'),
-                dollarRate_per_hour = request.args.get('dollarRate_per_hour'))
+                dollarRate_per_hour = request.args.get('dollarRate_per_hour'),
+                India_Address = request.args.get('India_Address'),
+                US_Address = request.args.get('US_Address'),
+                reference = request.args.get('reference'))
     return render_template('placedCandidates.html', candidates=CandidatesMB().getPlacedCandidatesModel())
 
 @app.route('/submitHiringCandidate', methods=['GET'])
@@ -85,16 +128,19 @@ def Hiring():
     submitHiringCandidate(Firstname =  request.args.get('Firstname'),
                 Lastname = request.args.get('Lastname'),
                 EmailID = request.args.get('EmailID'),
-                Contact_Number = request.args.get('Contact_Number'),
+                India_Number = request.args.get('India_Number'),
+                US_Number = request.args.get('US_Number'),
                 Visa_Status = request.args.get('Visa_Status'),
                 College_Name1 = request.args.get('College_Name1'),
                 College_Name2 = request.args.get('College_Name2'),
+                India_Address = request.args.get('India_Address'),
+                US_Address = request.args.get('US_Address'),
                 reference = request.args.get('reference'))
     return render_template('hiring.html', candidates=CandidatesMB().getHiringCandidatesModel())
 
 @app.route('/submitInterviewCandidate', methods=['GET'])
 def InterviewCandidates():
-    submitInterviewCandidate(Firstname =  request.args.get('Firstname'),
+    submitInterviewCandidate(Firstname = request.args.get('Firstname'),
                 Lastname = request.args.get('Lastname'),
                 Consultant_Name = request.args.get('Consultant_name'),
                 Date = request.args.get('Date'),

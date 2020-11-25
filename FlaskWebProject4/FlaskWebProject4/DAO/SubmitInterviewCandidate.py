@@ -8,6 +8,6 @@ def submitInterviewCandidate(Firstname, Lastname, Consultant_Name, Date, Vendor_
     try:
         mycursor.execute(sql)
     except mysql.connector.Error as err:
-        print(err)
+        print('error')
     finally:
         mydb.commit()

@@ -113,15 +113,30 @@
         var editElements = document.getElementsByClassName("hiring-edit-" + cid);
         $.ajax({
             type: 'GET',
-            url: "/hiringSave?candidate_id=" + cid,
+            url: "/hiringSave",
+            contentType: 'application/json;charset=UTF-8',
+            data: {
+                candidate_id: cid,
+                Firstname: $('#'+cid+'-first_name').val(),
+                Lastname: $('#'+cid+'-last_name').val(),
+                EmailID: $('#' + cid + '-email_id').val(),
+                India_Number: $('#' + cid + '-india_address').val(),
+                US_Number: $('#'+cid+'-us_number').val(),
+                Visa_Status: $('#'+cid+'-visa_status').val(),
+                College_Name1: $('#'+cid+'-college_name1').val(),
+                College_Name2: $('#' + cid + '-college_name2').val(),
+                India_Address: $('#' + cid + 'india_address').val(),
+                US_Address: $('#' + cid + 'us_address').val(),
+                reference: $('#'+cid+'-reference').val()
+            },
             success: function (result) {
-                $("#"+cid+ "-hiring")
+                for (var i = 0; i < staticElements.length; i++) {
+                    staticElements[i].innerHTML = editElements[i].value
+                    staticElements[i].style.display = "block";
+                    editElements[i].style.display = "none";
+                }
             }
-        })
-        for (var i = 0; i < staticElements.length; i++) {
-            staticElements[i].style.display = "block";
-            editElements[i].style.display = "none";
-        }
+        });
     }
     function hiringCancel(cid) {
         var staticElements = document.getElementsByClassName("hiring-static-" + cid);
@@ -134,6 +149,135 @@
         document.getElementById(cid + "-saveHiring").style.display = "none";
         document.getElementById(cid + "-cancelHiring").style.display = "none";
         document.getElementById(cid + "-deleteHiring").style.display = "none";
+    }
+    function taskDelete(tid) {
+        $.ajax({
+            type: 'GET',
+            url: "/taskDelete?task_id=" + tid,
+            success: function (result) {
+                $("#" + tid + "-taskRow").remove();
+            }
+        });
+    }
+    function taskEdit(cid) {
+        var staticElements = document.getElementsByClassName("task-static-" + tid);
+        var editElements = document.getElementsByClassName("task-edit-" + tid);
+        for (var i = 0; i < staticElements.length; i++) {
+            staticElements[i].style.display = "none";
+            editElements[i].style.display = "block";
+        }
+        document.getElementById(tid + "-editTask").style.display = "none";
+        document.getElementById(tid + "-saveTask").style.display = "block";
+        document.getElementById(tid + "-cancelTask").style.display = "block";
+        document.getElementById(tid + "-deleteTask").style.display = "block";
+    }
+    function taskCancel(tid) {
+        var staticElements = document.getElementsByClassName("task-static-" + tid);
+        var editElements = document.getElementsByClassName("task-edit-" + tid);
+        for (var i = 0; i < staticElements.length; i++) {
+            staticElements[i].style.display = "block";
+            editElements[i].style.display = "none";
+        }
+        document.getElementById(tid + "-editTask").style.display = "block";
+        document.getElementById(tid + "-saveTask").style.display = "none";
+        document.getElementById(tid + "-cancelTask").style.display = "none";
+        document.getElementById(tid + "-deleteTask").style.display = "none";
+    }
+    function interviewDelete(cid) {
+        $.ajax({
+            type: 'GET',
+            url: "/interviewDelete?candidate_id=" + cid,
+            success: function (result) {
+                $("#" + cid + "-interviewRow").remove();
+            }
+        });
+    }
+    function interviewEdit(cid) {
+        var staticElements = document.getElementsByClassName("interview-static-" + cid);
+        var editElements = document.getElementsByClassName("interview-edit-" + cid);
+        for (var i = 0; i < staticElements.length; i++) {
+            staticElements[i].style.display = "none";
+            editElements[i].style.display = "block";
+        }
+        document.getElementById(cid + "-editInterview").style.display = "none";
+        document.getElementById(cid + "-saveInterview").style.display = "block";
+        document.getElementById(cid + "-cancelInterview").style.display = "block";
+        document.getElementById(cid + "-deleteInterview").style.display = "block";
+    }
+    function interviewCancel(cid) {
+        var staticElements = document.getElementsByClassName("interview-static-" + cid);
+        var editElements = document.getElementsByClassName("interview-edit-" + cid);
+        for (var i = 0; i < staticElements.length; i++) {
+            staticElements[i].style.display = "block";
+            editElements[i].style.display = "none";
+        }
+        document.getElementById(cid + "-editInterviek").style.display = "block";
+        document.getElementById(cid + "-saveInterview").style.display = "none";
+        document.getElementById(cid + "-cancelInterview").style.display = "none";
+        document.getElementById(cid + "-deleteInterview").style.display = "none";
+    }
+    function placedDelete(cid) {
+        $.ajax({
+            type: 'GET',
+            url: "/placedDelete?candidate_id=" + cid,
+            success: function (result) {
+                $("#" + cid + "-placedRow").remove();
+            }
+        });
+    }
+    function placedEdit(cid) {
+        var staticElements = document.getElementsByClassName("placed-static-" + cid);
+        var editElements = document.getElementsByClassName("placed-edit-" + cid);
+        for (var i = 0; i < staticElements.length; i++) {
+            staticElements[i].style.display = "none";
+            editElements[i].style.display = "block";
+        }
+        document.getElementById(cid + "-editplaced").style.display = "none";
+        document.getElementById(cid + "-saveplaced").style.display = "block";
+        document.getElementById(cid + "-cancelplaced").style.display = "block";
+        document.getElementById(cid + "-deleteplaced").style.display = "block";
+    }
+    function placedSave(cid) {
+        var staticElements = document.getElementsByClassName("placed-static-" + cid);
+        var editElements = document.getElementsByClassName("placed-edit-" + cid);
+        $.ajax({
+            type: 'GET',
+            url: "/placedSave",
+            contentType: 'application/json;charset=UTF-8',
+            data: {
+                candidate_id: cid,
+                Firstname: $('#' + cid + '-first_name').val(),
+                Lastname: $('#' + cid + '-last_name').val(),
+                EmailID: $('#' + cid + '-email_id').val(),
+                India_Number: $('#' + cid + '-india_address').val(),
+                US_Number: $('#' + cid + '-us_number').val(),
+                Visa_Status: $('#' + cid + '-visa_status').val(),
+                College_Name1: $('#' + cid + '-college_name1').val(),
+                College_Name2: $('#' + cid + '-college_name2').val(),
+                India_Address: $('#' + cid + 'india_address').val(),
+                US_Address: $('#' + cid + 'us_address').val(),
+                reference: $('#' + cid + '-reference').val()
+            },
+            success: function (result) {
+                for (var i = 0; i < staticElements.length; i++) {
+                    staticElements[i].innerHTML = editElements[i].value
+                    staticElements[i].style.display = "block";
+                    editElements[i].style.display = "none";
+                }
+            }
+        });
+    }
+    function placedCancel(cid) {
+        var staticElements = document.getElementsByClassName("placed-static-" + cid);
+        var editElements = document.getElementsByClassName("placed-edit-" + cid);
+        for (var i = 0; i < staticElements.length; i++) {
+            staticElements[i].style.display = "block";
+            editElements[i].style.display = "none";
+        }
+        document.getElementById(cid + "-editplaced").style.display = "block";
+        document.getElementById(cid + "-saveplaced").style.display = "none";
+        document.getElementById(cid + "-cancelplaced").style.display = "none";
+        document.getElementById(cid + "-deleteplaced").style.display = "none";
     }
     function getModule1(i) {
         $.ajax({
@@ -200,17 +344,6 @@
             success: function (result) {
                 document.getElementById("placed").innerHTML = result;
                 eval(document.getElementById("submit_placedForm").innerHTML);
-            }
-        });
-    }
-    function getUserData(user_id) {
-        document.getElementById("user-tasks").innerHTML = "";
-        $.ajax({
-            type: 'GET',
-            url: "/task?userid=" + user_id,
-            success: function (result) {
-                document.getElementById("user-tasks").innerHTML = result;
-                eval(document.getElementById("submit_form").innerHTML);
             }
         });
     }

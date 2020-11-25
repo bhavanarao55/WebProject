@@ -1,4 +1,4 @@
-﻿<div class="container">
+﻿<div>
     <!-- Modal -->
     <div class="modal fade" id="interview_candidateModal" tabindex="-1" role="dialog" aria-labelledby="interview_candidateModalTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -18,10 +18,6 @@
                         <div class="form-group">
                             <label>Last Name</label>
                             <input type="text" class="form-control" id="last_name" placeholder="Enter Candidate's Last Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Consultant Name</label>
-                            <input type="text" class="form-control" id="consultant_name" placeholder="Enter Consultant's Name">
                         </div>
                         <div class="form-group">
                             <label>Date</label>
@@ -117,7 +113,6 @@
                 data: {
                     Firstname: document.getElementById("first_name").value,
                     Lastname: $('#last_name').val(),
-                    Consultant_Name: $('#consultant_name').val(),
                     Date: $('#date').val(),
                     Vendor_Name: $('#vendor_name').val(),
                     Technology: $('#input_Technology').val(),

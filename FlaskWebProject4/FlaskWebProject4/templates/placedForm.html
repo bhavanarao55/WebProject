@@ -1,4 +1,4 @@
-﻿<div class="container">
+﻿<div>
     <!-- Modal -->
     <div class="modal fade" id="placed_candidateModal" tabindex="-1" role="dialog" aria-labelledby="placed_candidateModalTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -24,8 +24,12 @@
                             <input type="text" class="form-control" id="email_id" placeholder="Enter Email ID">
                         </div>
                         <div class="form-group">
-                            <label>Contact Number</label>
-                            <input type="text" class="form-control" id="contact_number" placeholder="Enter Candidate's Contact Number">
+                            <label>India Number</label>
+                            <input type="text" class="form-control" id="india_number" placeholder="Enter Candidate's India Contact Number">
+                        </div>
+                        <div class="form-group">
+                            <label>US Number</label>
+                            <input type="text" class="form-control" id="us_number" placeholder="Enter Candidate's US Contact Number">
                         </div>
                         <div class="form-group">
                             <label for="visa_status">Visa Status</label>
@@ -107,6 +111,18 @@
                             <label>$Rate per Hour</label>
                             <input type="text" class="form-control" id="dollar_rate_per_hour" placeholder="Enter Candidate's Working dollar per hour">
                         </div>
+                        <div class="form-group">
+                            <label>India Address</label>
+                            <input type="text" class="form-control" id="india_address" placeholder="Enter Candidate's India Address">
+                        </div>
+                        <div class="form-group">
+                            <label>US Address</label>
+                            <input type="text" class="form-control" id="us_address" placeholder="Enter Candidate's US Address">
+                        </div>
+                        <div class="form-group">
+                            <label>Reference</label>
+                            <input type="text" class="form-control" id="reference" placeholder="Enter Candidate's Reference">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -125,10 +141,11 @@
                 url: "/submitPlacedCandidate",
                 contentType: 'application/json;charset=UTF-8',
                 data: {
-                    Firstname: document.getElementById("first_name").value,
+                    Firstname: $("#first_name").value,
                     Lastname: $('#last_name').val(),
                     EmailID: $('#email_id').val(),
-                    Contact_Number: $('#contact_number').val(),
+                    India_Number: $('#india_number').val(),
+                    US_Number: $('#us_number').val(),
                     Visa_Status: $('#visa_status').val(),
                     College_Name1: $('#college_name1').val(),
                     College_Name2: $('#college_name2').val(),
@@ -138,7 +155,10 @@
                     Vendor_Name: $('#vendor_name').val(),
                     Client_Name: $('#client_name').val(),
                     Job_Location: $('#job_location').val(),
-                    dollarRate_per_hour: $('#dollar_rate_per_hour').val()
+                    dollarRate_per_hour: $('#dollar_rate_per_hour').val(),
+                    India_Address: $('#india_address').val(),
+                    US_Address: $('#us_address').val(),
+                    reference: $('#reference').val()
                 },
                 success: function (result) {
                     $('#placed_candidateModal').modal('hide')
